@@ -397,7 +397,7 @@
     },
     "payment": {
       "mdr": "MDR: R$ {{value}}",
-      "cost": "Custo de processamento: R$ {{value}}",
+      "cost": "Custo de processamento: R$ {{value}}*",
       "refund": "Valor estornado: R$ {{value}}"
     },
     "transaction": {
@@ -1393,6 +1393,10 @@
       "subscription_id": "Id da assinatura",
       "tid": "TID (ID da transação)",
       "title": "Detalhes da transação",
+      "tooltip": {
+        "description": "* O custo de processamento não será somado ao total de saídas dessa transação. Ele será debitado ao final do mês, junto aos custos de processamento das demais transações do período.",
+        "title": "Custo de processamento"
+      },
       "view_details": "Ver detalhes",
       "view_transactions": "Visualizar Transações"
     },
