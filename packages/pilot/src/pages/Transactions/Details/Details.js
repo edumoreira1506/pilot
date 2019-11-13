@@ -643,6 +643,11 @@ class TransactionDetails extends Component {
       }),
     }
 
+    const tooltipLabels = {
+      description: t('pages.transaction.tooltip.description'),
+      title: t('pages.transaction.tooltip.title'),
+    }
+
     const nextTransactionId = transaction.nextId
 
     return (
@@ -682,6 +687,7 @@ class TransactionDetails extends Component {
           recipientsLabels={recipientsLabels}
           riskLevelsLabels={riskLevelsLabels}
           reprocessLabels={reprocessLabels}
+          tooltipLabels={tooltipLabels}
           totalDisplayLabels={totalDisplayLabels}
           transaction={transaction}
           transactionDetailsLabels={transactionDetailsLabels}

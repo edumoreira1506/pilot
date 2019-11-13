@@ -35,9 +35,11 @@ import {
   CardContent,
   CardTitle,
   Col,
+  Flexbox,
   Grid,
   Legend,
   Row,
+  Tooltip,
   Truncate,
 } from 'former-kit'
 import IconInfo from 'emblematic-icons/svg/Info32.svg'
@@ -470,35 +472,53 @@ class TransactionDetails extends Component {
   }
 
   renderOutAmountSubTitle () {
-    const { totalDisplayLabels } = this.props
+    const {
+      tooltipLabels,
+      totalDisplayLabels,
+      transaction: { payment },
+    } = this.props
 
     return (
       <div className={style.subtitle}>
-        <div>
+        <Flexbox>
           {totalDisplayLabels.mdr
             && (
-              <span>
+              <p className={style.mdr}>
                 {totalDisplayLabels.mdr}
-              </span>
+              </p>
             )
           }
-          {totalDisplayLabels.cost
+          {payment.refund_amount > 0
             && (
-              <span>
-                {totalDisplayLabels.cost}
-              </span>
-            )
-          }
-        </div>
-        <div>
-          {totalDisplayLabels.refund > 0
-            && (
-              <span>
+              <span className={style.refund}>
                 {totalDisplayLabels.refund}
               </span>
             )
           }
-        </div>
+        </Flexbox>
+        {totalDisplayLabels.cost && payment.method !== 'boleto'
+          && (
+            <Flexbox className={style.processCost}>
+              <span>
+                {totalDisplayLabels.cost}
+              </span>
+              <Tooltip
+                className={style.tooltip}
+                content={(
+                  <div className={style.content}>
+                    <p className={style.title}>{tooltipLabels.title}</p>
+                    <p className={style.description}>
+                      {tooltipLabels.description}
+                    </p>
+                  </div>
+                )}
+                placement="bottomEnd"
+              >
+                <IconInfo color="#7052c8" width={12} height={12} />
+              </Tooltip>
+            </Flexbox>
+          )
+        }
       </div>
     )
   }
@@ -794,17 +814,12 @@ class TransactionDetails extends Component {
                   amount={
                     getOutAmount([
                       payment.refund_amount,
-                      payment.cost_amount,
                       payment.mdr_amount,
                     ])
                   }
                   amountSize="large"
                   color="#4d4f62"
-                  subtitle={(
-                    <div className={style.subtitle}>
-                      {this.renderOutAmountSubTitle()}
-                    </div>
-                  )}
+                  subtitle={this.renderOutAmountSubTitle()}
                   title={totalDisplayLabels.out_amount}
                   titleSize="medium"
                 />
@@ -821,7 +836,7 @@ class TransactionDetails extends Component {
               <CardContent className={style.content}>
                 <TotalDisplay
                   align="start"
-                  amount={payment.net_amount}
+                  amount={(payment.net_amount + payment.cost_amount)}
                   amountSize="large"
                   color="#4d4f62"
                   subtitle={(
@@ -1098,6 +1113,10 @@ TransactionDetails.propTypes = {
     moderated: PropTypes.string,
     very_high: PropTypes.string,
     very_low: PropTypes.string,
+  }).isRequired,
+  tooltipLabels: PropTypes.shape({
+    description: PropTypes.string,
+    title: PropTypes.string,
   }).isRequired,
   totalDisplayLabels: PropTypes.shape({
     captured_at: PropTypes.string,

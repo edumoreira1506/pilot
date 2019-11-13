@@ -13,31 +13,57 @@
 .content {
   display: flex;
   height: 100%;
-
-  & :first-child {
-    width: 100%;
-  }
 }
 
 .children {
   font-size: 18px;
 }
 
+.tooltip {
+  right: -35px;
+
+  & .content {
+    display: flex;
+    flex-direction: column;
+    width: 295px;
+  }
+
+  & .title {
+    color: #b780ff;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  & .description {
+    font-size: 13px;
+  }
+}
+
 .subtitle {
-  display: block;
-  height: 38px;
+  display: flex;
+  flex-direction: column;
+
+  & .mdr {
+    font-size: 11px;
+    margin: 0;
+  }
+
+  & .refund:before {
+    content: "|";
+    padding: 4px;
+  }
 
   &:empty {
     height: 38px;
   }
 
-  & span:before {
-    content: "|";
-    padding: 4px;
+  & .processCost {
+    margin-top: var(--spacing-tiny);
   }
 
-  & span:first-child:before {
-    content: none;
+  & svg {
+    margin-bottom: 2px;
+    margin-left: 4px;
   }
 }
 
