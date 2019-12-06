@@ -10,13 +10,18 @@
   margin-right: var(--spacing-tiny);
 }
 
+.title {
+  font-size: 12px;
+}
+
 .title:first-letter {
   text-transform: capitalize;
 }
 
 .value {
-  font-weight: 500;
+  font-weight: 600;
   margin-left: auto;
+  font-size: 14px;
 }
 
 .list {

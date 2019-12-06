@@ -3,6 +3,7 @@
 
 .greeting {
   margin-bottom: var(--spacing-tiny);
+  font-size: 12px;
 
   & > .name {
     margin-bottom: var(--spacing-tiny);
@@ -22,6 +23,10 @@
 
 .sideColumn > div {
   max-width: 100%;
+}
+
+.emptyStateMessage {
+  font-size: 14px;
 }
 
 .emptyStateMessage > div {
@@ -75,6 +80,7 @@
 
   & .title {
     flex: 1;
+    color: #454545;
   }
 
   & .radialContainer {

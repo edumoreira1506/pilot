@@ -123,7 +123,7 @@ const Header = ({
       justifyContent="space-between"
     >
       <div className={styles.greeting}>
-        <h4 className={styles.name}>{labels.greeting}</h4>
+        <h3 className={styles.name}>{labels.greeting}</h3>
         <span>{labels.description}</span>
       </div>
       <Flexbox
